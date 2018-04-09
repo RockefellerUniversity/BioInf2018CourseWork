@@ -22,7 +22,7 @@ Student should include within this directory the R script containing the code to
 For example.*(This is not the answer)*
 
 
-# Question 1 - Read in the differential expression table and produce a data.frame of all results. How many genes have a padj < 0.05.
+**Question 1 - Read in the differential expression table and produce a data.frame of all results. How many genes have a padj < 0.05**
 ```
 myRers <- read.delim("DE_Genes/Expression.csv",sep=">",header=FALSE)
 length(myRers)
