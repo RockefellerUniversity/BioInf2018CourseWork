@@ -22,7 +22,7 @@ Student should include within this directory the R script containing the code to
 For example.*(This is not the answer)*
 
 
-**Question 1 - Read in the differential expression table and produce a data.frame of all results. How many genes have a padj < 0.05**
+### Question 1 - Read in the differential expression table and produce a data.frame of all results. How many genes have a padj < 0.05 
 ```
 myRers <- read.delim("DE_Genes/Expression.csv",sep=">",header=FALSE)
 length(myRers)
@@ -102,8 +102,8 @@ boxplot(log10(Expression[rownames(Expression) %in% DEResults$ID[DEResults$padj <
 
 ```{r homerPeakssas1s,eval=TRUE,echo=FALSE,warning=FALSE,message=FALSE}
 
-top40 <- rownames(Expression)[rowMeans(Expression) > quantile(rowMeans(Expression),0.4)]
-DEResults2 <- DEResults[DEResults$ID %in% top40,]
+top60 <- rownames(Expression)[rowMeans(Expression) > quantile(rowMeans(Expression),0.4)]
+DEResults2 <- DEResults[DEResults$ID %in% top60,]
 DEResults2$sigOrNot <- DEResults2$padj < 0.05
 DEResults2 %>% 
   ggplot(aes(y=log2FoldChange,x=log2(baseMean),colour=sigOrNot))+geom_point()+
@@ -166,14 +166,14 @@ peakFile  %>%
 ```
 
 
-* Question 5 - Make a boxplot plot of the log10 of findPeaks.Score for each chromosome as shown below using ggplot graphics.
+* Question 5 - Make a boxplot plot of the log10 of region sizes for each chromosome as shown below using ggplot graphics.
 
 ```{r homerPeaks6,eval=TRUE,echo=FALSE,warning=FALSE,message=FALSE}
 library(ggplot2)
   ggplot(peakFile,aes(y=region.size,x=chr,fill=chr))+geom_boxplot()+coord_flip()+
   scale_y_log10()+
   theme_minimal()+
-  xlab("region sizes (log10)")+ggtitle("Histogram log10 of region sizes")+coord_flip()
+  xlab("region sizes (log10)")+ggtitle("Boxplot of region sizes")+coord_flip()
 
 ```
 
